@@ -3,31 +3,41 @@ const input = require('readline-sync');
 // TODO 2: modify your quiz app to ask 5 questions //
 
 // TODO 1.1a: Define candidateName // 
-let candidateName;
+let candidateName = "";
 // TODO 1.2a: Define question, correctAnswer, and candidateAnswer //
+//let greeting = "Welcome " + candidateName + "!";
 let question;
-let correctAnswer;
-let candidateAnswer;
+let correctAnswer = "Sally Ride";
+let candidateAnswer = "";
 let questions;
-let correctAnswers;
+let correctAnswers = "";
 let candidateAnswers;
 
 
-function askForName() {
+function askForName(candidateName) {
   // TODO 1.1b: Ask for candidate's name //
-
+    candidateName = input.question("May I have your first name please? ");
+console.log();
+console.log("Welcome " + candidateName + "!");
+console.log();
 }
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-
-
+      candidateAnswer = input.question("Who was the first American woman in space? ");
 }
 
-function gradeQuiz(candidateAnswers) {
+function gradeQuiz() {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-
+candidateAnswers = candidateAnswer;
+console.log();
+if (candidateAnswer === correctAnswer) {
+    console.log("Perfect!");
+}else {
+    console.log("I'm sorry, that is not correct");
+    console.log()
+}
 
   let grade;
   
@@ -36,11 +46,14 @@ function gradeQuiz(candidateAnswers) {
 }
 
 function runProgram() {
-  askForName();
+ 
+
   // TODO 1.1c: Ask for candidate's name //
-  
+   askForName();
+ 
   askQuestion();
-  gradeQuiz(this.candidateAnswers);
+
+  console.log(gradeQuiz(this.candidateAnswers));
 }
 
 // Don't write any code below this line //
