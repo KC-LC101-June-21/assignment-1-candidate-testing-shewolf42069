@@ -1,9 +1,11 @@
 const input = require('readline-sync');
 
+
 // TODO 2: modify your quiz app to ask 5 questions //
 
 // TODO 1.1a: Define candidateName // 
-let candidateName = "";
+
+let candidateName = [];
 
 // TODO 1.2a: Define question, correctAnswer, and candidateAnswer //
 
@@ -18,11 +20,14 @@ let questions = [
    "What is the minimum crew size for the ISS? "];
 let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"];
 let candidateAnswers = [];
-let grade = 100;
+let numberOfCorrectAnswers = correctAnswers.length;
+let grade;
 
-function askForName(candidateName) {
+
+function askForName() {
   // TODO 1.1b: Ask for candidate's name //
-    candidateName = input.question("May I have your first name please? ");
+
+    candidateName = input.question("May I have your full name please? ");
     console.log();
     console.log("Welcome " + candidateName + "!");
     console.log();
@@ -32,20 +37,18 @@ function askForName(candidateName) {
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
 
-for (let i = 0; i <= questions.length; i++) {
+  for (let i = 0; i <= questions.length -1; i++) {
 
-      candidateAnswer = input.question(questions[i]);
-      candidateAnswers.push(candidateAnswer);
+    candidateAnswer = input.question(questions[i]);
+    candidateAnswers.push(candidateAnswer);
 
-//console.log(candidateAnswers);
-
-    if (candidateAnswer === correctAnswers[i]) {
-    console.log("Perfect!");
-    console.log();
-      }else {
-    console.log("I'm sorry, that is not correct");
-    //grade = grade - 20;
-    console.log();
+    if (candidateAnswer.toUpperCase() === correctAnswers[i].toUpperCase()) {
+      console.log("Correct!");
+      console.log();
+    }else {
+      console.log("I'm sorry, that is not correct");
+       numberOfCorrectAnswers = numberOfCorrectAnswers - 1;
+      console.log();
     }
   } 
 }
@@ -54,10 +57,14 @@ function gradeQuiz() {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
 
-  //grade;
+grade = numberOfCorrectAnswers/(questions.length)*100;
+console.log(`Candidate Name: ${candidateName}`);
 
+for (let i = 0; i <= questions.length-1; i++) {
 
-  //return grade;
+  console.log(`${i+1}) ${questions[i]}\nYour answer: ${candidateAnswers[i]}\nCorrect answer: ${correctAnswers[i]}\n\n `);
+}
+console.log(`Your grade is ${grade}%    You got ${numberOfCorrectAnswers} of ${questions.length} correct!`);
 }
 
 function runProgram() {
@@ -66,8 +73,9 @@ function runProgram() {
 
   askForName();
   askQuestion();
+  gradeQuiz();
 
-  console.log(gradeQuiz(this.candidateAnswers));
+  //console.log(gradeQuiz(this.candidateAnswers));
   
 }
 
