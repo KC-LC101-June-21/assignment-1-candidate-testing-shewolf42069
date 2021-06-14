@@ -64,7 +64,14 @@ for (let i = 0; i <= questions.length-1; i++) {
 
   console.log(`${i+1}) ${questions[i]}\nYour answer: ${candidateAnswers[i]}\nCorrect answer: ${correctAnswers[i]}\n\n `);
 }
-console.log(`Your grade is ${grade}%    You got ${numberOfCorrectAnswers} of ${questions.length} correct!`);
+
+console.log(`>>> Overall grade is: ${grade}%    (You got ${numberOfCorrectAnswers} of ${questions.length} correct!) <<<`);
+
+if (grade >= 80) {
+  console.log(">>> STATUS: PASSED <<<");
+  } else {
+  console.log(">>> STATUS: FAILED <<<");
+  }
 }
 
 function runProgram() {
